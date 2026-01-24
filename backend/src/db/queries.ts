@@ -66,6 +66,10 @@ export const updateProduct = async (
 	productId: string,
 	data: Partial<NewProduct>,
 ) => {
+	const existingProduct = await getProductById(productId)
+	if (!existingProduct) {
+		throw new Error(`Product with id ${productId} not found`)
+	}
 	const [product] = await db
 		.update(products)
 		.set(data)
@@ -75,6 +79,10 @@ export const updateProduct = async (
 }
 
 export const deleteProduct = async (productId: string) => {
+	const existingProduct = await getProductById(productId)
+	if (!existingProduct) {
+		throw new Error(`Product with id ${productId} not found`)
+	}
 	const [product] = await db
 		.delete(products)
 		.where(eq(products.id, productId))
@@ -95,6 +103,10 @@ export const getCommentById = async (commentId: string) => {
 }
 
 export const deleteComment = async (commentId: string) => {
+	const existingComment = await getCommentById(commentId)
+	if (!existingComment) {
+		throw new Error(`Comment with id ${commentId} not found`)
+	}
 	const [comment] = await db
 		.delete(comments)
 		.where(eq(comments.id, commentId))

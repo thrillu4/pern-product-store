@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from 'react-router'
+import NavBar from './components/NavBar'
+import CreateNewProduct from './pages/CreateNewProduct'
+import EditProduct from './pages/EditProduct'
+import Home from './pages/Home'
+import Product from './pages/Product'
+import Profile from './pages/Profile'
+import { ROUTES } from './utils/routes'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<div className='min-h-screen bg-[#202020]'>
+			<NavBar />
+			<main className='max-w-5xl'>
+				<Routes>
+					<Route path={ROUTES.HOME} element={<Home />} />
+					<Route path={ROUTES.EDIT} element={<EditProduct />} />
+					<Route path={ROUTES.CREATE} element={<CreateNewProduct />} />
+					<Route path={ROUTES.PROFILE} element={<Profile />} />
+					<Route path={ROUTES.PRODUCT} element={<Product />} />
+				</Routes>
+			</main>
+		</div>
+	)
 }
 
 export default App

@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router'
 import NavBar from './components/NavBar'
+import { useAuthReq } from './hooks/useAuthReq'
+import { useUserSync } from './hooks/useUserSync'
 import CreateNewProduct from './pages/CreateNewProduct'
 import EditProduct from './pages/EditProduct'
 import Home from './pages/Home'
@@ -8,6 +10,9 @@ import Profile from './pages/Profile'
 import { ROUTES } from './utils/routes'
 
 function App() {
+	const { isClerkLoaded } = useAuthReq()
+	useUserSync()
+	if (!isClerkLoaded) return 'LOADING'
 	return (
 		<div className='min-h-screen bg-[#202020]'>
 			<NavBar />

@@ -1,4 +1,4 @@
-import type { IProduct, IUserData } from '../types'
+import type { IProductData, IUserData } from '../types'
 import { ENDPOINTS } from '../utils/end-points'
 import { api } from './axios'
 
@@ -22,7 +22,7 @@ export const getMyProducts = async () => {
 	return data
 }
 
-export const createProduct = async (productData: IProduct) => {
+export const createProduct = async (productData: IProductData) => {
 	const { data } = await api.post(ENDPOINTS.CREATE_PRODUCT, productData)
 	return data
 }
@@ -32,7 +32,7 @@ export const updateProduct = async ({
 	...productData
 }: {
 	id: string
-	productData: IProduct
+	productData: IProductData
 }) => {
 	const { data } = await api.post(
 		`${ENDPOINTS.UPDATE_PRODUCT}${id}`,

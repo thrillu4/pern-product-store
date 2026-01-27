@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router'
 import NavBar from './components/NavBar'
 import { useAuthReq } from './hooks/useAuthReq'
 import { useUserSync } from './hooks/useUserSync'
@@ -10,18 +10,31 @@ import Profile from './pages/Profile'
 import { ROUTES } from './utils/routes'
 
 function App() {
-	const { isClerkLoaded } = useAuthReq()
+	const { isClerkLoaded, isSignedIn } = useAuthReq()
 	useUserSync()
-	if (!isClerkLoaded) return 'LOADING'
+	if (!isClerkLoaded) return null
 	return (
 		<div className='min-h-screen bg-[#202020]'>
 			<NavBar />
-			<main className='max-w-5xl'>
+			<main className='max-w-360 mx-auto'>
 				<Routes>
 					<Route path={ROUTES.HOME} element={<Home />} />
-					<Route path={ROUTES.EDIT} element={<EditProduct />} />
-					<Route path={ROUTES.CREATE} element={<CreateNewProduct />} />
-					<Route path={ROUTES.PROFILE} element={<Profile />} />
+					<Route
+						path={ROUTES.EDIT}
+						element={
+							isSignedIn ? <EditProduct /> : <Navigate to={ROUTES.HOME} />
+						}
+					/>
+					<Route
+						path={ROUTES.CREATE}
+						element={
+							isSignedIn ? <CreateNewProduct /> : <Navigate to={ROUTES.HOME} />
+						}
+					/>
+					<Route
+						path={ROUTES.PROFILE}
+						element={isSignedIn ? <Profile /> : <Navigate to={ROUTES.HOME} />}
+					/>
 					<Route path={ROUTES.PRODUCT} element={<Product />} />
 				</Routes>
 			</main>

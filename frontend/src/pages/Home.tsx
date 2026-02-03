@@ -71,7 +71,7 @@ const Home = () => {
 				</h2>
 
 				{products.length === 0 ? (
-					<div className='bg-linear-to-bl from-zinc-100-700  via-cyan-950 to-violet-300-800 rounded-4xl'>
+					<div className='bg-linear-to-bl  via-cyan-950 rounded-4xl'>
 						<div className='flex flex-col gap-3 text-white items-center text-center py-16'>
 							<PackageIcon className='size-16' />
 							<h3 className='text-2xl font-bold'>No products yet</h3>

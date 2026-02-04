@@ -27,7 +27,11 @@ const ProductCard = ({ product }: { product: IProduct }) => {
 						<span className=' bg-cyan-900 py-1 rounded-3xl px-4'>NEW</span>
 					)}
 				</h2>
-				<p className='opacity-75'>{product.description}</p>
+				<p className='opacity-75'>
+					{product.description.length > 50
+						? `${product.description.slice(0, 50)}...`
+						: product.description}
+				</p>
 
 				<div className='w-full h-0.5 bg-stone-800 mt-5 mb-4'></div>
 

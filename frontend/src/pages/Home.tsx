@@ -12,7 +12,6 @@ const Home = () => {
 	const { data: products, isError, isLoading } = useAllProducts()
 
 	if (isLoading) return <LoadingSpinner />
-
 	if (isError) {
 		return (
 			<div

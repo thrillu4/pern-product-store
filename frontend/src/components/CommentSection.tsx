@@ -19,7 +19,7 @@ interface Props {
 const CommentSection = ({ comments, productId }: Props) => {
 	const [content, setContent] = useState('')
 	const { isSignedIn, userId } = useAuth()
-	const deleteComment = useDeleteComment()
+	const deleteComment = useDeleteComment(productId!)
 	const createComment = useCreateComment()
 
 	const handleSubmit = (e: FormEvent) => {

@@ -44,15 +44,20 @@ export const getAllProducts = async () => {
 export const getProductById = async (productId: string) => {
 	return db.query.products.findFirst({
 		where: eq(products.id, productId),
-		with: { user: true },
-		orderBy: (products, { desc }) => desc(products.updatedAt),
+		with: {
+			user: true,
+			comments: {
+				with: { user: true },
+				orderBy: (comments, { desc }) => [desc(comments.createdAt)],
+			},
+		},
 	})
 }
 
 export const getProductByUserId = async (userId: string) => {
 	return await db.query.products.findMany({
 		where: eq(products.userId, userId),
-		with: { user: true },
+		with: { user: true, comments: true },
 		orderBy: (products, { desc }) => desc(products.updatedAt),
 	})
 }

@@ -8,13 +8,17 @@ export interface IProductData {
 	title: string
 	description: string
 	imageUrl: string
+	createdAt?: Date
 }
 
 export interface IComment {
+	id: string
+	user: IUserData
 	content: string
 	createdAt: Date
 	updatedAt: Date
 	productId: string
+	userId: string
 }
 
 export interface IProduct extends IProductData {

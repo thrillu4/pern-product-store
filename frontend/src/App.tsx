@@ -14,13 +14,13 @@ function App() {
 	useUserSync()
 	if (!isClerkLoaded) return null
 	return (
-		<div className='min-h-screen bg-[#202020]'>
+		<div className='min-h-screen bg-[#202020] text-white'>
 			<NavBar />
 			<main className='max-w-360 mx-auto'>
 				<Routes>
 					<Route path={ROUTES.HOME} element={<Home />} />
 					<Route
-						path={ROUTES.EDIT}
+						path={`${ROUTES.EDIT}/:id`}
 						element={
 							isSignedIn ? <EditProduct /> : <Navigate to={ROUTES.HOME} />
 						}
@@ -35,7 +35,7 @@ function App() {
 						path={ROUTES.PROFILE}
 						element={isSignedIn ? <Profile /> : <Navigate to={ROUTES.HOME} />}
 					/>
-					<Route path={ROUTES.PRODUCT} element={<Product />} />
+					<Route path={`${ROUTES.PRODUCT}/:id`} element={<Product />} />
 				</Routes>
 			</main>
 		</div>

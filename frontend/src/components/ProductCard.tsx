@@ -1,6 +1,7 @@
 import { MessageCircleIcon } from 'lucide-react'
 import { Link } from 'react-router'
 import type { IProduct } from '../types'
+import { ROUTES } from '../utils/routes'
 
 const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
 
@@ -8,7 +9,10 @@ const ProductCard = ({ product }: { product: IProduct }) => {
 	const isNew = new Date(product.updatedAt) > oneWeekAgo
 
 	return (
-		<Link to={`/product/${product.id}`} className='bg-[#131212] rounded-4xl '>
+		<Link
+			to={`${ROUTES.PRODUCT}/${product.id}`}
+			className='bg-[#131212] rounded-4xl '
+		>
 			<figure className='px-6 pt-4'>
 				<img
 					src={product.imageUrl}
@@ -23,7 +27,11 @@ const ProductCard = ({ product }: { product: IProduct }) => {
 						<span className=' bg-cyan-900 py-1 rounded-3xl px-4'>NEW</span>
 					)}
 				</h2>
-				<p className='opacity-75'>{product.description}</p>
+				<p className='opacity-75'>
+					{product.description.length > 50
+						? `${product.description.slice(0, 50)}...`
+						: product.description}
+				</p>
 
 				<div className='w-full h-0.5 bg-stone-800 mt-5 mb-4'></div>
 

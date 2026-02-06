@@ -8,6 +8,7 @@ export interface IProductData {
 	title: string
 	description: string
 	imageUrl: string
+	createdAt?: Date
 }
 
 export interface IComment {

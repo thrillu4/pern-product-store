@@ -20,7 +20,6 @@ const Product = () => {
 	const { id } = useParams()
 	const { userId } = useAuth()
 	const { data: product, isLoading, error } = useProduct(id as string)
-	console.log(product)
 	const deleteProduct = useDeleteProduct()
 	const navigate = useNavigate()
 	const handleDelete = () => {

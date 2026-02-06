@@ -60,6 +60,6 @@ export const createComment = async ({
 }
 
 export const deleteComment = async (commentId: string) => {
-	const { data } = await api.post(`${ENDPOINTS.DELETE_COMMENT}${commentId}`)
+	const { data } = await api.delete(`${ENDPOINTS.DELETE_COMMENT}${commentId}`)
 	return data
 }

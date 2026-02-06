@@ -11,10 +11,13 @@ export interface IProductData {
 }
 
 export interface IComment {
+	id: string
+	user: IUserData
 	content: string
 	createdAt: Date
 	updatedAt: Date
 	productId: string
+	userId: string
 }
 
 export interface IProduct extends IProductData {

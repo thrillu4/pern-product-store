@@ -68,6 +68,12 @@ export const updateProduct = async (req: Request, res: Response) => {
 		if (!userId) return res.status(401).json({ error: 'Unauthorized' })
 		const { id } = req.params
 		const { title, description, imageUrl } = req.body
+		if (!title || !imageUrl || !description) {
+			return res.status(400).json({
+				error:
+					'Title, Image Url, Description fields are required, please fill it ',
+			})
+		}
 		const existingProduct = await queries.getProductById(id as string)
 		if (!existingProduct) {
 			return res.status(404).json({ error: 'Product not found' })

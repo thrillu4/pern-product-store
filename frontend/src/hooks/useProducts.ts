@@ -10,6 +10,7 @@ import {
 	getAllProducts,
 	getMyProducts,
 	getProductById,
+	updateProduct,
 } from '../lib/api'
 import type { IProduct } from '../types'
 
@@ -44,12 +45,6 @@ export const useDeleteProduct = () => {
 	})
 }
 
-// export const useUpdateProduct = ({
-// 	id,
-// 	data,
-// }: {
-// 	id: string
-// 	data: IProductData
-// }) => {
-// 	return useMutation({ mutationFn: () => updateProduct({ id, data }) })
-// }
+export const useUpdateProduct = () => {
+	return useMutation({ mutationFn: updateProduct })
+}

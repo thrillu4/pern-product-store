@@ -27,14 +27,8 @@ export const createProduct = async (productData: IProductData) => {
 	return data
 }
 
-export const updateProduct = async ({
-	id,
-	...productData
-}: {
-	id: string
-	productData: IProductData
-}) => {
-	const { data } = await api.post(
+export const updateProduct = async ({ id, ...productData }: { id: string }) => {
+	const { data } = await api.put(
 		`${ENDPOINTS.UPDATE_PRODUCT}${id}`,
 		productData,
 	)

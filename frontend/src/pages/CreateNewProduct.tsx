@@ -23,7 +23,7 @@ const CreateNewProduct = () => {
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault()
 		createProduct.mutate(formData, {
-			onSuccess: () => navigate(ROUTES.HOME),
+			onSuccess: () => navigate(ROUTES.PRODUCT),
 		})
 	}
 
